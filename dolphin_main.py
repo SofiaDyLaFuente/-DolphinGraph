@@ -20,6 +20,7 @@ import matplotlib.pyplot as plt
 import random
 
 
+# Função responsável por ler e criar uma lista de adjacencias de cada vértice
 def ConstroiListaEncadeada(arquivo):
 
     # A lista Encadeada será um dicionario que armazenará os vértices
@@ -52,7 +53,7 @@ def ConstroiListaEncadeada(arquivo):
 
 # -----------------------------------------------------------------------------------------------------------
 
-# Função responsável por printar todos os vértices do grafo e seus respectvos graus
+# Função responsável por printar todos os vértices do grafo e seus respectivos graus
 def PrintGrauVertices(listaEncadeada):
 
     print(f"\nPrint dos vértices e seus respectivos graus")
@@ -60,7 +61,7 @@ def PrintGrauVertices(listaEncadeada):
     for i in sorted(listaEncadeada, key = listaEncadeada.get):
         print(f"Vértice: {i} -> Grau: {len(listaEncadeada[i])}")
 
-    return
+    return ()
 
 # -----------------------------------------------------------------------------------------------------------
 
@@ -86,8 +87,10 @@ def BronKerbosch(R, P, X, listaAdjacencia, cliques):
         return
 
     for v in list(P):
+        
         # Para cada vértice v escolhido, faz-se uma chamada recursiva adicionando v em R.
         BronKerbosch(
+           
             # Usa as funções união e insterseção nativas
             R.union({v}),
             P.intersection(listaAdjacencia[v]),
@@ -99,7 +102,6 @@ def BronKerbosch(R, P, X, listaAdjacencia, cliques):
         # Quando todas as extensões de R que contém v forem analisadas, v é movido de P para X.
         P.remove(v)
         X.add(v)
-
 
 def Cliques(listaAdjacencia):
 
@@ -120,13 +122,16 @@ def Cliques(listaAdjacencia):
     return cliques
 
 # -----------------------------------------------------------------------------------------------------------
-# Função para encontrar os coeficientes de aglomeração:
+
+# ===========================================================================================================
 # Existia dois meios para encontrar o coeficiente de aglomeração: 
 # - Usando a fórmula do coeficiente de aglomeração:  2ti / ni (ni - 1) e implementar o código na mão
-# - Usar uma biblioteca que já tenha implementada o coeficiente
+# - Usar uma biblioteca que já tenha implementado o coeficiente
 # 
 # Por ser mais simples, optei por implementar a biblioteca já pronta
+#============================================================================================================
 
+# Função para encontrar os coeficientes de aglomeração:
 def CoeficienteAglomeracao(listaEncadeada):
     # Cria um grafo usando a biblioteca networkx e a de lista de adjacencias, e usa a função da networkx para encontrar os coeficientes
     Grafo = nx.Graph(listaEncadeada)
@@ -139,7 +144,8 @@ def CoeficienteAglomeracao(listaEncadeada):
     # Retorna o coeficiente de aglomeração para todos os vértices
     return coeficienteAglomeracao
 
-#------------------------------------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------------------------------------------------
 # Função para encontrar o coeficiente médio de aglomeração do grafo
 def CoeficienteMédioAglomeração(coeficienteAglomeracao):
     
@@ -151,16 +157,17 @@ def CoeficienteMédioAglomeração(coeficienteAglomeracao):
     
     return ()
 
-#------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------------------
 
+# =========================================================================================================================
 # Para a plotagem do grafo foi necessário o uso de três biblioteca: Matplotlib para plotar o grafico,
-# a NetworkX para criar e manipular grafos (nesse caso usado para criar um grafo considerando a lista de
-# adjcencias) e desenhar o grafo na Matplot e a biblioteca Random, para gerar cores aleatórias para os vértice.
+# NetworkX para criar e manipular grafos (nesse caso usado para criar um grafo considerando a lista de
+# adjcencias) e desenhar o grafo na Matplot, e a biblioteca Random, para gerar cores aleatórias para os vértice.
 # Para a criação desse algoritmo, me baseei no algoritmo do The igraph development team, que pode ser conferido:
 # https://python.igraph.org/en/latest/tutorials/visualize_cliques.html, alem da documentação das duas bibliotecas:
 # https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.clique.find_cliques.html
 # https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html
-#
+# =========================================================================================================================
 
 
 # Função para gerar a visualização do grafo com cliques e arestas coloridas
@@ -200,6 +207,7 @@ def visualizacaoGrafo(listaEncadeada, cliques):
     return ()
 
 # -----------------------------------------------------------------------------------------------------------
+
 # Função principal: leitura do arquivo txt e chamada das respectivas funções
 def main():
     arquivo = 'soc-dolphins.txt'
@@ -210,7 +218,7 @@ def main():
     # Função para printar os vértices e seus respectivos graus
     PrintGrauVertices(listaEncadeada)
 
-    # Função para idintificar todos os cliques maximais e printá-los
+    # Função para identificar todos os cliques maximais e printá-los
     cliques = Cliques(listaEncadeada) 
 
     # Função para identificar o coeficiente de aglomeração de cada um dos vértices
