@@ -147,7 +147,7 @@ def CoeficienteAglomeracao(listaEncadeada):
 
 #-------------------------------------------------------------------------------------------------------------------------
 # Função para encontrar o coeficiente médio de aglomeração do grafo
-def CoeficienteMédioAglomeração(coeficienteAglomeracao):
+def CoeficienteMedioAglomeracao(coeficienteAglomeracao):
     
     # Média simples 
     soma = sum(coeficienteAglomeracao.values())
@@ -225,7 +225,7 @@ def main():
     coeficienteAglomeracao = CoeficienteAglomeracao(listaEncadeada)
 
     # Função para identificar o coeficiente médio de aglomeração do grafo
-    CoeficienteMédioAglomeração(coeficienteAglomeracao)
+    CoeficienteMedioAglomeracao(coeficienteAglomeracao)
     
     # Função para visualização dos vertices e adjacencias do grafo e seus respectivos cliques maximais
     VisualizacaoGrafo(listaEncadeada, cliques)
