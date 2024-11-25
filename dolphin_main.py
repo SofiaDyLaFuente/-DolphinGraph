@@ -171,7 +171,7 @@ def CoeficienteMédioAglomeração(coeficienteAglomeracao):
 
 
 # Função para gerar a visualização do grafo com cliques e arestas coloridas
-def visualizacaoGrafo(listaEncadeada, cliques):
+def VisualizacaoGrafo(listaEncadeada, cliques):
     
     # Cria o grafo a partir da lista de adjacência. Criei um dicionário para mapear as cores
     grafo = nx.Graph(listaEncadeada)
@@ -228,7 +228,7 @@ def main():
     CoeficienteMédioAglomeração(coeficienteAglomeracao)
     
     # Função para visualização dos vertices e adjacencias do grafo e seus respectivos cliques maximais
-    visualizacaoGrafo(listaEncadeada, cliques)
+    VisualizacaoGrafo(listaEncadeada, cliques)
 
 
 if __name__ == "__main__":
